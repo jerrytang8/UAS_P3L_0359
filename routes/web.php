@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\DepositKelasController;
+use App\Http\Controllers\DepositRegulerController;
+use App\Http\Controllers\AktivasiController;
+use App\Http\Controllers\JadwalharController;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\JadwaldefController;
 use App\Http\Controllers\MemberController;
@@ -40,7 +44,7 @@ Route::delete('/member/{id}', [MemberController::class, 'hapus']);
 Route::get('/member/{id}/cetak', [MemberController::class, 'cetak']);
 Route::get('/member/{id}/reset', [MemberController::class, 'reset']);
 
-// jadwal
+// jadwal default
 Route::get('/jadwaldef', [JadwaldefController::class, 'index']);
 Route::get('/jadwaldef/tambah', [JadwaldefController::class, 'tambah']);
 Route::post('/jadwaldef/save', [JadwaldefController::class, 'save']);
@@ -58,3 +62,33 @@ Route::get('/akun/ubahpassword', function () {
 Route::post('/akun/auth', [AkunController::class, 'auth']);
 Route::post('/akun/ubah', [AkunController::class, 'ubah']);
 Route::post('/akun/logout', [AkunController::class, 'logout']);
+
+// jadwal harian
+Route::get('/jadwalhar', [JadwalharController::class, 'index']);
+Route::get('/jadwalhar/generate', [JadwalharController::class, 'generate']);
+Route::get('/jadwalhar/tambah', [JadwalharController::class, 'tambah']);
+Route::post('/jadwalhar/save', [JadwalharController::class, 'save']);
+Route::get('/jadwalhar/{id}/edit', [JadwalharController::class, 'edit']);
+Route::patch('/jadwalhar/{id}', [JadwalharController::class, 'update']);
+Route::get('/jadwalhar/{id}/editinstruktur', [JadwalharController::class, 'editinstruktur']);
+Route::patch('/jadwalhar/{id}/simpaninstruktur', [JadwalharController::class, 'simpaninstruktur']);
+Route::patch('/jadwalhar/{id}/ubahstatus', [JadwalharController::class, 'ubahstatus']);
+Route::delete('/jadwalhar/{id}', [JadwalharController::class, 'hapus']);
+
+// aktivasi tahunan
+Route::get('/aktivasi', [AktivasiController::class, 'index']);
+Route::get('/aktivasi/tambah', [AktivasiController::class, 'tambah']);
+Route::post('/aktivasi/save', [AktivasiController::class, 'save']);
+Route::get('/aktivasi/{id}/cetak', [AktivasiController::class, 'cetak']);
+
+// deposit reguler
+Route::get('/deposit_reguler', [DepositRegulerController::class, 'index']);
+Route::get('/deposit_reguler/tambah', [DepositRegulerController::class, 'tambah']);
+Route::post('/deposit_reguler/save', [DepositRegulerController::class, 'save']);
+Route::get('/deposit_reguler/{id}/cetak', [DepositRegulerController::class, 'cetak']);
+
+// deposit kelas
+Route::get('/deposit_kelas', [DepositKelasController::class, 'index']);
+Route::get('/deposit_kelas/tambah', [DepositKelasController::class, 'tambah']);
+Route::post('/deposit_kelas/save', [DepositKelasController::class, 'save']);
+Route::get('/deposit_kelas/{id}/cetak', [DepositKelasController::class, 'cetak']);

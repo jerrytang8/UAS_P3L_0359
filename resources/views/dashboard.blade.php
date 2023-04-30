@@ -13,7 +13,7 @@
 								<div class="d-sm-flex d-block align-items-center">
 									<img src="{{ asset('/theme/images/illustration.png') }}" alt="" class="mw-100 mr-3">
 									<div>
-										<h4 class="fs-20 text-black">Selamat Datang {{ session('nama') }}</h4>
+										<h4 class="fs-20 text-black">Selamat Datang {{ session('nama') }} </h4>
 										<p class="fs-14 mb-0">Selamat datang di dalam aplikasi GoFit</p>
 									</div>
 								</div>

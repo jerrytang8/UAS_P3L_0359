@@ -28,12 +28,36 @@
                                 <span class="nav-text">Member</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ url('/aktivasi') }}" class="ai-icon" aria-expanded="false">
+                                <i class="flaticon-381-id-card"></i>
+                                <span class="nav-text">Aktivasi Tahunan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/deposit_reguler') }}" class="ai-icon" aria-expanded="false">
+                                <i class="flaticon-381-id-card"></i>
+                                <span class="nav-text">Deposit Reguler</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/deposit_kelas') }}" class="ai-icon" aria-expanded="false">
+                                <i class="flaticon-381-id-card"></i>
+                                <span class="nav-text">Deposit Kelas</span>
+                            </a>
+                        </li>
                     <?php } ?>
                     <?php if(session('role')=='manager') { ?>
                         <li>
                             <a href="{{ url('/jadwaldef') }}" class="ai-icon" aria-expanded="false">
                                 <i class="flaticon-381-calendar"></i>
                                 <span class="nav-text">Jadwal Default</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/jadwalhar') }}" class="ai-icon" aria-expanded="false">
+                                <i class="flaticon-381-calendar-7"></i>
+                                <span class="nav-text">Jadwal Harian</span>
                             </a>
                         </li>
                     <?php } ?>
