@@ -16,7 +16,7 @@
             <div class="col-xl-6">
                 <div class="card" id="html-content-holder">
                     <div class="card-footer">
-                        <h5 class="card-title">GoFit <br><small>Jl. Centralspanark No. 10</small></h5> 
+                        <h5 class="card-title">GoFit <br><small>Jl. Centralspanark No. 10 Yogyakarta</small></h5> 
                         <br>                       
                         <h4 class="card-title">MEMBER CARD</h4>
                         <div class="form-group row">
