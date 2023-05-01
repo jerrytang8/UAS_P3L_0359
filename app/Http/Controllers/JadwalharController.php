@@ -18,11 +18,11 @@ class JadwalharController extends Controller
             // dd($t->tgl);
             // $data = DB::table('jadwal_harian')->where('tgl', $t->tgl)->get();
             $data = DB::table('jadwal_harian')
-                ->join('jam', 'jadwal_harian.id_jam', '=', 'jam.id')
+                ->join('jam_kelas', 'jadwal_harian.id_jam', '=', 'jam_kelas.id')
                 ->join('kelas', 'jadwal_harian.id_kelas', '=', 'kelas.id')
                 ->join('instruktur AS ins1', 'jadwal_harian.id_instruktur', '=', 'ins1.id')
                 ->leftJoin('instruktur AS ins2', 'jadwal_harian.id_instruktur2', '=', 'ins2.id')
-                ->select('jadwal_harian.*', 'jam.slot', 'kelas.nama as kelas', 'ins1.nama as instruktur', 'ins2.nama as instruktur2', 'ins1.id as id_ins', 'ins2.id as id_ins2')
+                ->select('jadwal_harian.*', 'jam_kelas.slot', 'kelas.nama as kelas', 'ins1.nama as instruktur', 'ins2.nama as instruktur2', 'ins1.id as id_ins', 'ins2.id as id_ins2')
                 ->where('tgl', $t->tgl)->orderBy('id_jam', 'asc')->get();
             // dd($data);
             $data_waktu = array();
