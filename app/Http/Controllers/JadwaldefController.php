@@ -16,46 +16,46 @@ class JadwaldefController extends Controller
         //     ->get();
 
         $senin = DB::table('jadwal_default')
-            ->join('jam', 'jadwal_default.id_jam', '=', 'jam.id')
+            ->join('jam_kelas', 'jadwal_default.id_jam', '=', 'jam_kelas.id')
             ->join('kelas', 'jadwal_default.id_kelas', '=', 'kelas.id')
             ->join('instruktur', 'jadwal_default.id_instruktur', '=', 'instruktur.id')
-            ->select('jadwal_default.*', 'jam.slot', 'kelas.nama as kelas', 'instruktur.nama as instruktur')
+            ->select('jadwal_default.*', 'jam_kelas.slot', 'kelas.nama as kelas', 'instruktur.nama as instruktur')
             ->where('id_hari', 1)->orderBy('id_jam', 'ASC')->get();
         $selasa = DB::table('jadwal_default')
-            ->join('jam', 'jadwal_default.id_jam', '=', 'jam.id')
+            ->join('jam_kelas', 'jadwal_default.id_jam', '=', 'jam_kelas.id')
             ->join('kelas', 'jadwal_default.id_kelas', '=', 'kelas.id')
             ->join('instruktur', 'jadwal_default.id_instruktur', '=', 'instruktur.id')
-            ->select('jadwal_default.*', 'jam.slot', 'kelas.nama as kelas', 'instruktur.nama as instruktur')
+            ->select('jadwal_default.*', 'jam_kelas.slot', 'kelas.nama as kelas', 'instruktur.nama as instruktur')
             ->where('id_hari', 2)->orderBy('id_jam', 'ASC')->get();
         $rabu = DB::table('jadwal_default')
-            ->join('jam', 'jadwal_default.id_jam', '=', 'jam.id')
+            ->join('jam_kelas', 'jadwal_default.id_jam', '=', 'jam_kelas.id')
             ->join('kelas', 'jadwal_default.id_kelas', '=', 'kelas.id')
             ->join('instruktur', 'jadwal_default.id_instruktur', '=', 'instruktur.id')
-            ->select('jadwal_default.*', 'jam.slot', 'kelas.nama as kelas', 'instruktur.nama as instruktur')
+            ->select('jadwal_default.*', 'jam_kelas.slot', 'kelas.nama as kelas', 'instruktur.nama as instruktur')
             ->where('id_hari', 3)->orderBy('id_jam', 'ASC')->get();
         $kamis = DB::table('jadwal_default')
-            ->join('jam', 'jadwal_default.id_jam', '=', 'jam.id')
+            ->join('jam_kelas', 'jadwal_default.id_jam', '=', 'jam_kelas.id')
             ->join('kelas', 'jadwal_default.id_kelas', '=', 'kelas.id')
             ->join('instruktur', 'jadwal_default.id_instruktur', '=', 'instruktur.id')
-            ->select('jadwal_default.*', 'jam.slot', 'kelas.nama as kelas', 'instruktur.nama as instruktur')
+            ->select('jadwal_default.*', 'jam_kelas.slot', 'kelas.nama as kelas', 'instruktur.nama as instruktur')
             ->where('id_hari', 4)->orderBy('id_jam', 'ASC')->get();
         $jumat = DB::table('jadwal_default')
-            ->join('jam', 'jadwal_default.id_jam', '=', 'jam.id')
+            ->join('jam_kelas', 'jadwal_default.id_jam', '=', 'jam_kelas.id')
             ->join('kelas', 'jadwal_default.id_kelas', '=', 'kelas.id')
             ->join('instruktur', 'jadwal_default.id_instruktur', '=', 'instruktur.id')
-            ->select('jadwal_default.*', 'jam.slot', 'kelas.nama as kelas', 'instruktur.nama as instruktur')
+            ->select('jadwal_default.*', 'jam_kelas.slot', 'kelas.nama as kelas', 'instruktur.nama as instruktur')
             ->where('id_hari', 5)->orderBy('id_jam', 'ASC')->get();
         $sabtu = DB::table('jadwal_default')
-            ->join('jam', 'jadwal_default.id_jam', '=', 'jam.id')
+            ->join('jam_kelas', 'jadwal_default.id_jam', '=', 'jam_kelas.id')
             ->join('kelas', 'jadwal_default.id_kelas', '=', 'kelas.id')
             ->join('instruktur', 'jadwal_default.id_instruktur', '=', 'instruktur.id')
-            ->select('jadwal_default.*', 'jam.slot', 'kelas.nama as kelas', 'instruktur.nama as instruktur')
+            ->select('jadwal_default.*', 'jam_kelas.slot', 'kelas.nama as kelas', 'instruktur.nama as instruktur')
             ->where('id_hari', 6)->orderBy('id_jam', 'ASC')->get();
         $minggu = DB::table('jadwal_default')
-            ->join('jam', 'jadwal_default.id_jam', '=', 'jam.id')
+            ->join('jam_kelas', 'jadwal_default.id_jam', '=', 'jam_kelas.id')
             ->join('kelas', 'jadwal_default.id_kelas', '=', 'kelas.id')
             ->join('instruktur', 'jadwal_default.id_instruktur', '=', 'instruktur.id')
-            ->select('jadwal_default.*', 'jam.slot', 'kelas.nama as kelas', 'instruktur.nama as instruktur')
+            ->select('jadwal_default.*', 'jam_kelas.slot', 'kelas.nama as kelas', 'instruktur.nama as instruktur')
             ->where('id_hari', 7)->orderBy('id_jam', 'ASC')->get();
         // ddd($jadwal);
         return view('jadwaldef.index', [
@@ -72,7 +72,7 @@ class JadwaldefController extends Controller
     public function tambah()
     {
         $hari = DB::table('hari')->get();
-        $jam = DB::table('jam')->get();
+        $jam = DB::table('jam_kelas')->get();
         $kelas = DB::table('kelas')->get();
         $instruktur = DB::table('instruktur')->get();
         return view('jadwaldef.tambah', [
@@ -108,7 +108,7 @@ class JadwaldefController extends Controller
         $data = DB::table('jadwal_default')->where('id', $id)->first();
         // dd($data);
         $hari = DB::table('hari')->get();
-        $jam = DB::table('jam')->get();
+        $jam = DB::table('jam_kelas')->get();
         $kelas = DB::table('kelas')->get();
         $instruktur = DB::table('instruktur')->get();
         return view('jadwaldef.edit', [
