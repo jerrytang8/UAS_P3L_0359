@@ -17,7 +17,15 @@ class InstrukturController extends Controller
 
     public function tambah(Request $request)
     {
+        $maxdb = DB::table('instruktur')->max('id');
+        if (empty($maxdb)) {
+            $newid = 1;
+        } else {
+            $newid = $maxdb + 1;
+        }
         DB::table('instruktur')->insert([
+            'id' => $newid,
+            'instrukturid' => 'INS-' . $newid,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin

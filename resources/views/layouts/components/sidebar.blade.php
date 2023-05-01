@@ -9,6 +9,12 @@
                     </li>
                     <?php if(session('role')=='admin') { ?>
                         <li>
+                            <a href="{{ url('/kasir') }}" class="ai-icon" aria-expanded="false">
+                                <i class="flaticon-381-user-2"></i>
+                                <span class="nav-text">Kasir</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ url('/instruktur') }}" class="ai-icon" aria-expanded="false">
                                 <i class="flaticon-381-user-2"></i>
                                 <span class="nav-text">Instruktur</span>
