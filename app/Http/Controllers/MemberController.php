@@ -41,13 +41,25 @@ class MemberController extends Controller
 
     public function save(Request $request)
     {
+        $maxdb = DB::table('member')->max('id');
+        if (empty($maxdb)) {
+            $newid = 1;
+        } else {
+            $newid = $maxdb + 1;
+        }
         DB::table('member')->insert([
+            'id' => $newid,
             'memberid' => $request->memberid,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'no_telp' => $request->no_telp,
             'jenis_kelamin' => $request->jenis_kelamin,
             'tgl_lahir' => $request->tgl_lahir
+        ]);
+        DB::table('akun')->insert([
+            'username' => $request->memberid,
+            'password' => $request->tgl_lahir,
+            'role' => 'member'
         ]);
 
         return redirect('/member');
