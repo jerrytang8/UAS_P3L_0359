@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IjinInstrukturController;
 use App\Http\Controllers\DepositKelasController;
 use App\Http\Controllers\DepositRegulerController;
 use App\Http\Controllers\AktivasiController;
@@ -92,3 +93,8 @@ Route::get('/deposit_kelas', [DepositKelasController::class, 'index']);
 Route::get('/deposit_kelas/tambah', [DepositKelasController::class, 'tambah']);
 Route::post('/deposit_kelas/save', [DepositKelasController::class, 'save']);
 Route::get('/deposit_kelas/{id}/cetak', [DepositKelasController::class, 'cetak']);
+
+//ijin instruktur
+Route::get('/ijin_instruktur', [IjinInstrukturController::class, 'index']);
+Route::get('/ijin_instruktur/tambah', [IjinInstrukturController::class, 'tambah']);
+Route::post('/ijin_instruktur/save', [IjinInstrukturController::class, 'save']);

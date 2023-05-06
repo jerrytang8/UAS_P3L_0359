@@ -66,6 +66,20 @@
                                 <span class="nav-text">Jadwal Harian</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ url('/ijin_instruktur') }}" class="ai-icon" aria-expanded="false">
+                                <i class="flaticon-381-calendar-7"></i>
+                                <span class="nav-text">Ijin Instruktur</span>
+                            </a>
+                        </li>
+                    <?php } ?>
+                    <?php if(session('role')=='instruktur') { ?>
+                        <li>
+                            <a href="{{ url('/ijin_instruktur') }}" class="ai-icon" aria-expanded="false">
+                                <i class="flaticon-381-calendar-7"></i>
+                                <span class="nav-text">Ijin Instruktur</span>
+                            </a>
+                        </li>
                     <?php } ?>
                 </ul>
 				<div class="copyright">
