@@ -50,9 +50,10 @@ class DepositKelasController extends Controller
         }
         $kelas = DB::table('kelas_paket')->where('id', $request->kelas)->first();
         $deposit = DB::table('kelas_deposit')->where('memberid', $request->member)->where('id_kelas', $kelas->kelas)->first();
-
-        if (($deposit->sisa_deposit > 0) or ($deposit->masa_aktif > date('Y-m-d H:i:s'))) {
-            return redirect('/deposit_kelas/tambah')->with('gagal', 'Paket Sebelumnya Masih Berlaku!');
+        if ($deposit) {
+            if (($deposit->sisa_deposit > 0) or ($deposit->masa_aktif > date('Y-m-d H:i:s'))) {
+                return redirect('/deposit_kelas/tambah')->with('gagal', 'Paket Sebelumnya Masih Berlaku!');
+            }
         }
 
         $tgl_now = date('Y-m-d H:i:s');

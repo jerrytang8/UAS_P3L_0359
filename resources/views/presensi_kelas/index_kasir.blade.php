@@ -27,13 +27,9 @@
                             </button>
                         </div>
                     @endif
-
                     <div class="card">
                         <div class="card-header d-sm-flex d-block pb-0 border-0">
-                            <h4 class="card-title">Data Ijin Instruktur</h4>
-                            <a href="{{ url('/ijin_instruktur/tambah') }}" class="btn btn-primary light btn-md ml-auto">
-                                <i class="fa fa-plus scale5 mr-3"></i>Tambah Ijin Instruktur
-                            </a>
+                            <h4 class="card-title">Data Presensi Kelas</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -41,13 +37,11 @@
                                     <thead>
                                         <tr>
                                             <th width="5%">No</th>
+                                            <th>No Struk</th>
                                             <th>Tanggal</th>
-                                            <th>Jam</th>
+                                            <th>Member</th>
+                                            <th>Jenis Presensi</th>
                                             <th>Kelas</th>
-                                            <th>Status</th>
-                                            <th>Keterangan</th>
-                                            <th>Instruktur</th>
-                                            <th>Pengganti</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -56,21 +50,11 @@
                                         @foreach ($data as $i)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $i->tgl }}</td>
-                                                <td>{{ $i->slot }}</td>
-                                                <td>{{ $i->kelas }}</td>
-                                                <td>
-                                                    <?php if ($i->status == 0) {
-                                                        echo 'Pending';
-                                                    } elseif ($i->status == 1) {
-                                                        echo 'Disetujui';
-                                                    } else {
-                                                        echo 'Ditolak';
-                                                    } ?>
-                                                </td>
+                                                <td>{{ $i->no_struk }}</td>
+                                                <td>{{ $i->tanggal }}</td>
+                                                <td>{{ $i->member }}/{{ $i->nama_member }}</td>
                                                 <td>{{ $i->keterangan }}</td>
-                                                <td>{{ $i->instruktur }}</td>
-                                                <td>{{ $i->pengganti }}</td>
+                                                <td>{{ $i->kelas }}</td>
                                                 <td>
                                                     <div class="dropdown ml-auto text-right">
                                                         <div class="btn-link" data-toggle="dropdown">
@@ -90,56 +74,39 @@
                                                             </svg>
                                                         </div>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                            <form action="{{ url("deposit_kelas/$i->id") }}" method="POST">
+                                                            <form action="{{ url('presensi_kelas/id') }}" method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <a class="dropdown-item" href="javascript:void(0);"
-                                                                    data-toggle="modal"
-                                                                    data-target="#status{{ $i->id }}">Konfirmasi</a>
+                                                                <?php if($i->jenis_transaksi=='05') { ?>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ url("/presensi_kelas/$i->id/cetak") }}"
+                                                                    target="_blank">Cetak Struk</a>
+                                                                <?php } ?>
+                                                                <?php if($i->jenis_transaksi=='06') { ?>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ url("/presensi_kelas/$i->id/cetak_paket") }}"
+                                                                    target="_blank">Cetak Struk</a>
+                                                                <?php } ?>
                                                                 {{-- <button type="submit" class="dropdown-item"
                                                                     onclick="return confirm('Apakah Anda Yakin?')"><span
-                                                                        data-feather="x-circle"></span>Hapus
-                                                                </button> --}}
+                                                                        data-feather="x-circle"></span>Hapus</button> --}}
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="status{{ $i->id }}">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Konfirmasi Status</h5>
-                                                            <button type="button" class="close"
-                                                                data-dismiss="modal"><span>&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form action="{{ url('/ijin_instruktur/konfirmasi') }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                <input type="hidden" name="id"
-                                                                    value="{{ $i->id }}">
-                                                                <div class="form-group">
-                                                                    <label>Status</label>
-                                                                    <select class="form-control" name="status" required>
-                                                                        <option value="1">Setujui</option>
-                                                                        <option value="2">Tolak</option>
-                                                                    </select>
-                                                                </div>
-                                                                <button class="btn btn-primary">Submit</button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="row">
+                    <div id="reader" width="600px"></div>
                 </div>
             </div>
         </div>

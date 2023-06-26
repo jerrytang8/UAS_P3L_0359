@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LapPendapatanController;
 use App\Http\Controllers\IjinInstrukturController;
 use App\Http\Controllers\DepositKelasController;
 use App\Http\Controllers\DepositRegulerController;
@@ -9,6 +10,14 @@ use App\Http\Controllers\AkunController;
 use App\Http\Controllers\JadwaldefController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\InstrukturController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\LapGymController;
+use App\Http\Controllers\LapKelasController;
+use App\Http\Controllers\LapKinerjaController;
+use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PresensiGymController;
+use App\Http\Controllers\PresensiKelasController;
+use App\Http\Controllers\PromoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +43,24 @@ Route::get('/instruktur', [InstrukturController::class, 'index']);
 Route::post('/instruktur/tambah', [InstrukturController::class, 'tambah']);
 Route::patch('/instruktur/{id}', [InstrukturController::class, 'update']);
 Route::delete('/instruktur/{id}', [InstrukturController::class, 'hapus']);
+
+// kelas
+Route::get('/kelas', [KelasController::class, 'index']);
+Route::post('/kelas/tambah', [KelasController::class, 'tambah']);
+Route::patch('/kelas/{id}', [KelasController::class, 'update']);
+Route::delete('/kelas/{id}', [KelasController::class, 'hapus']);
+
+// pegawai
+Route::get('/pegawai', [PegawaiController::class, 'index']);
+Route::post('/pegawai/tambah', [PegawaiController::class, 'tambah']);
+Route::patch('/pegawai/{id}', [PegawaiController::class, 'update']);
+Route::delete('/pegawai/{id}', [PegawaiController::class, 'hapus']);
+
+// promo
+Route::get('/promo', [PromoController::class, 'index']);
+Route::post('/promo/tambah', [PromoController::class, 'tambah']);
+Route::patch('/promo/{id}', [PromoController::class, 'update']);
+Route::delete('/promo/{id}', [PromoController::class, 'hapus']);
 
 // penganturan member
 Route::get('/member', [MemberController::class, 'index']);
@@ -98,3 +125,37 @@ Route::get('/deposit_kelas/{id}/cetak', [DepositKelasController::class, 'cetak']
 Route::get('/ijin_instruktur', [IjinInstrukturController::class, 'index']);
 Route::get('/ijin_instruktur/tambah', [IjinInstrukturController::class, 'tambah']);
 Route::post('/ijin_instruktur/save', [IjinInstrukturController::class, 'save']);
+Route::post('/ijin_instruktur/konfirmasi', [IjinInstrukturController::class, 'konfirmasi']);
+
+//presensi gym
+Route::get('/presensi_gym', [PresensiGymController::class, 'index']);
+Route::get('/presensi_gym/scan', [PresensiGymController::class, 'scan']);
+Route::post('/presensi_gym/cek_member', [PresensiGymController::class, 'cek_member']);
+Route::get('/presensi_gym/{id}/absensi', [PresensiGymController::class, 'absensi']);
+Route::post('/presensi_gym/save', [PresensiGymController::class, 'save']);
+Route::get('/presensi_gym/{id}/cetak', [PresensiGymController::class, 'cetak']);
+
+//lap pendapatan
+Route::get('/lap_pendapatan', [LapPendapatanController::class, 'index']);
+Route::post('/lap_pendapatan/update_lap', [LapPendapatanController::class, 'update_lap']);
+
+//lap gym bulanan
+Route::get('/lap_gym', [LapGymController::class, 'index']);
+Route::post('/lap_gym/update_lap', [LapGymController::class, 'update_lap']);
+
+//presensi kelas
+Route::get('/presensi_kelas', [PresensiKelasController::class, 'index']);
+Route::get('/presensi_kelas/{id}/absen_member', [PresensiKelasController::class, 'absen_member']);
+Route::post('/presensi_kelas/save_absensi', [PresensiKelasController::class, 'save_absensi']);
+Route::get('/presensi_kelas/index_kasir', [PresensiKelasController::class, 'index_kasir']);
+Route::get('/presensi_kelas/{id}/cetak', [PresensiKelasController::class, 'cetak']);
+Route::get('/presensi_kelas/{id}/cetak_paket', [PresensiKelasController::class, 'cetak_paket']);
+Route::get('/presensi_kelas/{id}/mulai_kelas', [PresensiKelasController::class, 'mulai_kelas']);
+
+//lap kelas
+Route::get('/lap_kelas', [LapKelasController::class, 'index']);
+Route::post('/lap_kelas/update_lap', [LapKelasController::class, 'update_lap']);
+
+//lap kelas
+Route::get('/lap_kinerja', [LapKinerjaController::class, 'index']);
+Route::post('/lap_kinerja/update_lap', [LapKinerjaController::class, 'update_lap']);

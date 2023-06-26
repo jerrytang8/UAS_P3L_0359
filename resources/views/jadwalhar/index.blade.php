@@ -34,8 +34,9 @@
                             <table id="example" class="display min-w850">
                                 <thead>
                                     <tr>
+                                        <th width="5%">No</th>
                                         <th width="5%" class="bg-primary text-white">Tanggal</th>
-                                        <th width="95%" class="text-center">Waktu</th>
+                                        <th width="90%" class="text-center">Waktu</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,9 +44,8 @@
                                     <?php $no=1; ?>
                                     @foreach ($jadwal as $j)
                                     <tr>
+                                        <td>{{ $no++; }}</td>
                                         <th class="bg-primary text-white text-center">
-                                            {{ $no++; }}
-                                            <br><br>
                                             {{ $j['hari'] }}
                                             <br>
                                             {{ $j['bulan'] }}

@@ -61,6 +61,9 @@ class AkunController extends Controller
         } else {
             $member = DB::table('member')->where('memberid', $data->username)->first();
             // dd($member);
+            if (empty($member)) {
+                return redirect('/');
+            }
             session([
                 'id_user' => $data->id,
                 'username' => $data->username,

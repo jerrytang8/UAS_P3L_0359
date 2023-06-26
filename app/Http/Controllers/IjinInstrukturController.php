@@ -75,4 +75,22 @@ class IjinInstrukturController extends Controller
 
         return redirect('/ijin_instruktur');
     }
+
+    public function konfirmasi(Request $request)
+    {
+        // dd($request->input());
+        // $data = DB::table('jadwal_harian')
+        //     ->where('id_hari', $request->input('hari'))
+        //     ->where('id_jam', $request->input('waktu'))
+        //     ->where('id_instruktur', $request->input('instruktur'))
+        //     ->first();
+        // if (!empty($data)) {
+        //     return redirect('/jadwalhar/tambah')->with('gagal', 'Instruktur Sudah ada jadwal!');
+        // }
+        DB::table('ijin_instruktur')->where('id', $request->id)->update([
+            'status' => $request->input('status')
+        ]);
+
+        return redirect('/ijin_instruktur');
+    }
 }

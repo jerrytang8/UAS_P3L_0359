@@ -19,7 +19,7 @@ class MyHelper
 
     public static function tglstruk($date)
     {
-        $tahun = substr($date, 2, 2);
+        $tahun = substr($date, 0, 4);
         $bulan = substr($date, 5, 2);
         $tgl = substr($date, 8, 2);
         $waktu = substr($date, 11, 5);
@@ -28,7 +28,7 @@ class MyHelper
 
     public static function masa_aktif($date)
     {
-        $tahun = substr($date, 2, 2);
+        $tahun = substr($date, 0, 4);
         $bulan = substr($date, 5, 2);
         $tgl = substr($date, 8, 2);
         return $result = $tgl . "/" . $bulan . "/" . $tahun;
@@ -66,15 +66,27 @@ class MyHelper
         return $result = $tgl . " " . $Bulan[(int)$bulan - 1] . " " . $tahun;
     }
 
-    public static function bulan($date)
+    public static function bulan_tahun($date)
     {
         $Bulan = array(
             "Januari", "Februari", "Maret", "April",
             "Mei", "Juni", "Juli", "Agustus", "September",
-            "Oktober", "November", "Dessember"
+            "Oktober", "November", "Desember"
         );
         $tahun = substr($date, 0, 4);
         $bulan = substr($date, 5, 2);
-        return $result = $Bulan[(int)$bulan - 1] . " Tahun " . $tahun;
+        return $result = $Bulan[(int)$bulan - 1] . " Tahun: " . $tahun;
+    }
+
+    public static function tgl_bulan($date)
+    {
+        $Bulan = array(
+            "Januari", "Februari", "Maret", "April",
+            "Mei", "Juni", "Juli", "Agustus", "September",
+            "Oktober", "November", "Desember"
+        );
+        $bulan = substr($date, 5, 2);
+        $tgl = substr($date, 8, 2);
+        return $result = $tgl . ' ' . $Bulan[(int)$bulan - 1];
     }
 }
